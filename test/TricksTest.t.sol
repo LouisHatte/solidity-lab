@@ -11,8 +11,6 @@ contract TricksTest is Test {
     function setUp() external {}
 
     function test_a() external view {
-        uint256 a = 0;
-        uint256 b = 1;
-        console2.log(b / a);
+        console2.log(gasleft());
     }
 }
