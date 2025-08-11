@@ -21,12 +21,6 @@
 - Truncating `uintX` or `intX` loses leftmost bytes
 - Truncating `bytesX` loses rightmost bytes
 
-# Units
-
-- `1 wei == 1`
-- `1 gwei == 10^9 wei`
-- `1 ether == 10^18 wei`
-
 # Allocation Syntaxe
 
 ```solidity
@@ -76,11 +70,96 @@ function gt(Timestamp t1, Timestamp t2) pure returns (bool) {
 }
 ```
 
-# Other
+# Errors
 
-4 types of memory:
+- `require` use `REVERT` opcode, refund gas, used for simple checks
+- `revert`, use `REVERT` opcode, refund gas, used for complex checks
+- `assert` use `REVERT` opcode, refund gas, used for bug detection
 
-- calldata (input)
-- memory (during function call)
-- storage (saved on the blockchain)
-- transient storage (during function call with storage properties)
+# Events
+
+- `event E() anonymous`, use `LOG0` opcode (0 topic)
+- `event E()`, use `LOG1` opcode (1 topic: `keccak256("E()")`)
+- `event E(indexed)` use `LOG2` opcode (2 topics)
+- `event E(indexed, indexed)` use `LOG3` opcode (3 topics)
+- `event E(indexed, indexed, indexed)` use `LOG4` opcode (4 topics)
+
+# Send Ether
+
+- `call`, forward `x gas`, `return (bool success, bytes memory data)`
+- `send`, vulnerable, forward `2300 gas` only, `return (bool success)`
+- `transfer`, vulnerable, forward `2300 gas` only, `revert` on failure
+
+# fallback & receive
+
+# Inheritance
+
+- constructor?
+- storage layout?
+- virtual contract?
+- override, virtuale?
+
+# Interface
+
+```solidity
+// can inherit interfaces only
+interface IA is IB {
+    struct Struct {
+        uint256 u;
+    }
+    enum Enum { Status0 }
+    event Event(address indexed from, uint256 value) anonymous;
+    error Err(address a);
+
+    // functions must be external
+    function f1(address a) external returns (uint256);
+    function f2() external pure;
+    function f3() external view;
+    function f4() external payable;
+}
+```
+
+# Library
+
+```solidity
+// can't inherit
+library L {
+    uint256 constant A = 1;
+    // can't declare immutable variables
+    // can't declare state variables
+
+    struct Struct {
+        uint256 u;
+    }
+    enum Enum { State0 }
+    event Event();
+    error Err();
+
+    modifier m() {
+        _;
+    }
+
+    // can't define constructor
+    // can't define receive
+    // can't define fallback
+
+    function f1() external {}
+    function f2() public {}
+    // WARNING: in a library, an internal function gets inlined into contracts using it
+    // So internal library functions are callable by any contract
+    function f3() internal {}
+    function f4() private {}
+
+}
+```
+
+# Contract
+
+```solidity
+interface IA {}
+contract B {}
+abstract contract C {}
+
+// can inherit interfaces, contracts and abstract contracts
+contract A is IA, B, C {}
+```

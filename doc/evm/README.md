@@ -13,7 +13,7 @@ SWAP1,  ...,    SWAP16  // exchange 1st and xth stack items
 POP                     // remove 1st item from stack
 
 // calldata
-CALLDATALOAD            // msg.data
+CALLDATALOAD            // place msg.data word on stack
 CALLDATASIZE            // length of msg.data
 CALLDATACOPY            // copy msg.data in memory
 
@@ -104,7 +104,7 @@ RETURNDATACOPY  // copy data returned by last CALL, CALLCODE, DELEGATECALL, STAT
 STOP            // stop execution
 RETURN          // halt execution returning output data
 REVERT          // halt execution reverting state changes but returning data and remaining gas
-INVALID         // halt execution reverting state changes, but returning 0 and 0 gas, designated invalid instruction
+INVALID         // halt execution reverting state changes, but returning 0 and 0 gas
 SELFDESTRUCT    // halt execution and register account for later deletion or send all Ether to address
 ```
 

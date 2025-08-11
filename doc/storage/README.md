@@ -95,3 +95,23 @@ contract A {
     uint256[2] n; //        slot 10, 11
 }
 ```
+
+## Inheritance
+
+```solidity
+contract C {
+    uint256 c = 1; // slot 0
+}
+
+contract B is C {
+    uint256 b = 2; // slot 1
+}
+
+contract D {
+    uint256 d = 3; // slot 2
+}
+
+contract A is B, D {
+    uint256 a = 4; // slot 3
+}
+```
