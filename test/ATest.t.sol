@@ -10,24 +10,5 @@ contract ATest is Test {
 
     function setUp() external {}
 
-    function test_one() external {
-        try new A() returns (A x) {
-            x;
-            // console2.log(x);
-            // } catch Error(string memory reason) {
-            // require(bool, string)
-            // revert(string)
-            // console2.log("Error");
-            // console2.log(reason);
-            // } catch Panic(uint256 errCode) {
-            // assert(bool)
-            // console2.log("Panic");
-            // console2.log(errCode);
-        } catch (bytes memory lowerLevelData) {
-            // require(bool, error)
-            // revert(error)
-            console2.log("Low level");
-            console2.logBytes(lowerLevelData);
-        }
-    }
+    function test_one() external {}
 }

@@ -1,4 +1,6 @@
-# Casting
+# Other
+
+## Casting
 
 - From `boolean` to `T`, a condition is used for any `T`
 
@@ -21,7 +23,7 @@
 - Truncating `uintX` or `intX` loses leftmost bytes
 - Truncating `bytesX` loses rightmost bytes
 
-# Allocation Syntaxe
+## Allocation Syntaxe
 
 ```solidity
 // string
@@ -54,7 +56,7 @@ T[] memory t = new T[](2);
 A a = new A();
 ```
 
-# Custom Type
+## Custom Type
 
 ```solidity
 type Timestamp is uint40;
@@ -70,7 +72,7 @@ function gt(Timestamp t1, Timestamp t2) pure returns (bool) {
 }
 ```
 
-# Errors
+## Errors
 
 - `require` use `REVERT` opcode, refund gas, used for simple checks
 - `revert`, use `REVERT` opcode, refund gas, used for complex checks
@@ -92,7 +94,7 @@ try a.isOne(6) returns (bool x) {
 // try new A() returns (A a) { ... } works too
 ```
 
-# Events
+## Events
 
 - `event E() anonymous`, use `LOG0` opcode (0 topic)
 - `event E()`, use `LOG1` opcode (1 topic: `keccak256("E()")`)
@@ -100,13 +102,13 @@ try a.isOne(6) returns (bool x) {
 - `event E(indexed, indexed)` use `LOG3` opcode (3 topics)
 - `event E(indexed, indexed, indexed)` use `LOG4` opcode (4 topics)
 
-# Send Ether
+## Send Ether
 
 - `call`, forward `x gas`, `return (bool success, bytes memory data)`
 - `send`, vulnerable, forward `2300 gas` only, `return (bool success)`
 - `transfer`, vulnerable, forward `2300 gas` only, `revert` on failure
 
-# Fallback & Receive
+## Fallback & Receive
 
 ```solidity
 if (msg.data.length == 0) {
@@ -128,7 +130,7 @@ if (msg.data.length == 0) {
 }
 ```
 
-# Interface
+## Interface
 
 ```solidity
 // can inherit interfaces only
@@ -148,7 +150,7 @@ interface IA is IB {
 }
 ```
 
-# Library
+## Library
 
 ```solidity
 // can't inherit
@@ -182,7 +184,7 @@ library L {
 }
 ```
 
-# Contract
+## Contract
 
 ```solidity
 interface IA {}
@@ -192,10 +194,3 @@ abstract contract C {}
 // can inherit interfaces, contracts and abstract contracts
 contract A is IA, B, C {}
 ```
-
-# Inheritance
-
-- constructor?
-- storage layout?
-- virtual contract?
-- override, virtuale?
