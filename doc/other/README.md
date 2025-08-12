@@ -1,4 +1,4 @@
-# Cast
+# Casting
 
 - From `boolean` to `T`, a condition is used for any `T`
 
@@ -76,6 +76,22 @@ function gt(Timestamp t1, Timestamp t2) pure returns (bool) {
 - `revert`, use `REVERT` opcode, refund gas, used for complex checks
 - `assert` use `REVERT` opcode, refund gas, used for bug detection
 
+```solidity
+try a.isOne(6) returns (bool x) {
+    // no error
+} catch Error(string memory reason) {
+    // catch require(bool, string)
+    // catch revert(string)
+} catch Panic(uint256 errCode) {
+    // catch assert(bool)
+    // catch division by zero, overflow, underflow...
+} catch (bytes memory lowerLevelData) {
+    // catch everything, even the ones above
+}
+
+// try new A() returns (A a) { ... } works too
+```
+
 # Events
 
 - `event E() anonymous`, use `LOG0` opcode (0 topic)
@@ -90,14 +106,27 @@ function gt(Timestamp t1, Timestamp t2) pure returns (bool) {
 - `send`, vulnerable, forward `2300 gas` only, `return (bool success)`
 - `transfer`, vulnerable, forward `2300 gas` only, `revert` on failure
 
-# fallback & receive
+# Fallback & Receive
 
-# Inheritance
-
-- constructor?
-- storage layout?
-- virtual contract?
-- override, virtuale?
+```solidity
+if (msg.data.length == 0) {
+    if (receive) {
+        receive();
+    } else if (fallback) {
+        fallback();
+    } else {
+        revert();
+    }
+} else {
+    if (functionSelectorIsOk) {
+        callFunction();
+    } else if (fallback) {
+        fallback();
+    } else {
+        revert();
+    }
+}
+```
 
 # Interface
 
@@ -163,3 +192,10 @@ abstract contract C {}
 // can inherit interfaces, contracts and abstract contracts
 contract A is IA, B, C {}
 ```
+
+# Inheritance
+
+- constructor?
+- storage layout?
+- virtual contract?
+- override, virtuale?

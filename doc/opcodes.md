@@ -1,8 +1,6 @@
-# EVM
+# Opcodes
 
-## Opcodes
-
-### Memories
+## Memories
 
 ```rust
 // stack
@@ -36,7 +34,7 @@ TSTORE                  // save word to transient storage
 LOG0,   ...,    LOG4    // append log record with x topics
 ```
 
-### Operations
+## Operations
 
 ```rust
 ADD         // a + b
@@ -62,7 +60,7 @@ SIGNEXTEND  // with 0x000000xx, if signBit(xx) == 0: 0x000000xx else 0xffffffxx
 BYTE        // retrieve single byte from word
 ```
 
-### Conditions
+## Conditions
 
 ```rust
 LT          // a < b (uint)
@@ -78,7 +76,7 @@ JUMPI       // conditionnaly jump at x to a jumpdest
 JUMPDEST    // jump or jumpi destination
 ```
 
-### Functions
+## Functions
 
 ```rust
 KECCAK256       // keccak256(bytes)
@@ -98,7 +96,7 @@ RETURNDATASIZE  // data size returned by last CALL, CALLCODE, DELEGATECALL, STAT
 RETURNDATACOPY  // copy data returned by last CALL, CALLCODE, DELEGATECALL, STATICCALL in memory
 ```
 
-### Halt execution
+## Halt execution
 
 ```rust
 STOP            // stop execution
@@ -108,7 +106,7 @@ INVALID         // halt execution reverting state changes, but returning 0 and 0
 SELFDESTRUCT    // halt execution and register account for later deletion or send all Ether to address
 ```
 
-### Global values
+## Global values
 
 ```rust
 ADDRESS         // address(this)

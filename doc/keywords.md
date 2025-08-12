@@ -103,7 +103,7 @@ calldata, memory, storage
 // Control Flow
 if, else
 for, while, do, continue, break
-try, catch
+try, catch, Error, Panic
 return
 
 // Other keywords

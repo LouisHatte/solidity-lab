@@ -2,7 +2,8 @@
 
 - Storage variables can be `private`, `internal`, or `public`, not `external`
 - `mapping` can only be used in storage
-- Length of dynamic types can be determined and changed at runtime
+- With Storage, length of dynamic types can be determined and changed at runtime
+- With Memory, length of dynamic types must be fixed at allocation time
 
 ## String <= 31 bytes || Bytes <= 31 bytes
 
