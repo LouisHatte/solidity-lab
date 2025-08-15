@@ -56,6 +56,13 @@ T[] memory t = new T[](2);
 A a = new A();
 ```
 
+## Reserved memory
+
+- **0x00–0x3f**: scratch space for hashing methods
+- **0x40–0x5f**: currently allocated memory size, aka free memory pointer
+- **0x60-0x7f**: zero slot
+- **0x80**: allocated memory starts here
+
 ## Custom Type
 
 ```solidity
