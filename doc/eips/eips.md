@@ -25,7 +25,7 @@
 173 Contract Ownership Standard
 181 ENS support for reverse resolution of Ethereum addresses
 190 Ethereum Smart Contract Packaging Standard
-191 Signed Data Standard Martin Holst Swende
+191 Signed Data Standard
 196 Precompiled contracts for addition and scalar multiplication on the elliptic curve alt_bn128
 197 Precompiled contracts for optimal ate pairing check on the elliptic curve alt_bn128
 198 Big integer modular exponentiation
