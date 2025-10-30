@@ -1,5 +1,5 @@
 {
-  "solidity.compileUsingRemoteVersion": "v0.8.30+commit.005cabe0",
+  "solidity.compileUsingRemoteVersion": "v0.8.27+commit.7ef2b5e3",
   "solidity.packageDefaultDependenciesDirectory": "lib",
   "solidity.packageDefaultDependenciesContractsDirectory": "",
   "solidity.monoRepoSupport": false
